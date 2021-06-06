@@ -42,9 +42,11 @@ Route::post('/prepaid-balance', [PagesController::class, 'postPrepaid'])->middle
 Route::get('/product', [PagesController::class, 'product'])->name('product')->middleware('auth');
 Route::post('/product', [PagesController::class, 'postProduct'])->middleware('auth');
 Route::get('/success', [PagesController::class, 'success'])->name('success')->middleware('auth');
-Route::post('/payment', [PagesController::class, 'payment'])->name('payment')->middleware('auth');
+Route::get('/payment', [PagesController::class, 'payment'])->name('payment')->middleware('auth');
+Route::post('/payment', [PagesController::class, 'payment'])->middleware('auth');
 
 Route::get('/order', [OrderController::class, 'index'])->name('order')->middleware('auth');
+//Route::get('/order/search', [OrderController::class, 'search'])->name('order')->middleware('auth');
 
 Route::post('/doPayment', [PagesController::class, 'doPayment'])->name('doPayment')->middleware('auth');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

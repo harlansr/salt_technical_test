@@ -15,10 +15,32 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('user_id', '=', \Auth::user()->id)->orderByRaw('created_at DESC')->paginate(20);
-        return view('order', compact('orders'));
+        $query = "";
+        if($request->has('query') && $request->get('query')!=""){
+            $query = $request->get('query');
+            $orders = Order::where('user_id', '=', \Auth::user()->id)
+            ->where('order_no', 'LIKE', '%'.$query.'%')
+            ->orderByRaw('created_at DESC')->paginate(20);
+        }else{
+            $orders = Order::where('user_id', '=', \Auth::user()->id)->orderByRaw('created_at DESC')->paginate(20);
+        }
+        return view('order', ['orders'=> $orders, 'query' => $query]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = "";
+        if($request->has('query') && $request->get('query')!=""){
+            $query = $request->get('query');
+            $orders = Order::where('user_id', '=', \Auth::user()->id)
+            ->where('order_no', 'LIKE', '%'.$query.'%')
+            ->orderByRaw('created_at DESC')->paginate(20);
+        }else{
+            $orders = Order::where('user_id', '=', \Auth::user()->id)->orderByRaw('created_at DESC')->paginate(20);
+        }
+        return view('order', ['orders'=> $orders, 'query' => $query]);
     }
 
     /**

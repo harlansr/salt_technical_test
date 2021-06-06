@@ -54,9 +54,9 @@
         <div class="container-fluid">
           {{-- <div class="container"> --}}
             @if (Auth::user()->name !='')
-              <h1  class="navbar-brand mb-0 h1"><b>Hello, {{Auth::user()->name ?? ''}}</b><br><a class="text-danger" href="{{url('/order')}}">21</a> unpaid order</h1>
+              <h1  class="navbar-brand mb-0 h1"><b>Hello, {{Auth::user()->name ?? ''}}</b><br><a class="text-danger" href="{{url('/order')}}">{{$unpaid}}</a> unpaid order</h1>
             @else
-              <h1  class="navbar-brand"><b>Hello, {{Auth::user()->email ?? ''}}</b><br><a class="text-danger" href="/order">32</a> unpaid order</h1>
+              <h1  class="navbar-brand"><b>Hello, {{Auth::user()->email ?? ''}}</b><br><a class="text-danger" href="/order">{{$unpaid}}</a> unpaid order</h1>
             @endif
   
             {{-- <h1><a href="/"><b>3</b><a> unpaid order</h1> --}}

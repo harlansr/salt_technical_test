@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 //Database
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
+use App\Jobs\OrderAutoCancel;
 
 
 class PagesController extends Controller
 {
     public function home()
     {
+        
         return view('login');
     }
 
@@ -29,6 +31,7 @@ class PagesController extends Controller
     
     public function prepaid()
     {
+        
         $unpaid = Order::where('status', '=', 0)
                 ->where('user_id', '=', \Auth::user()->id)
                 ->count();
@@ -96,6 +99,16 @@ class PagesController extends Controller
 
     
 
+    // Random data
+    function randomNumber() {
+        $random_num = mt_rand(1000000000, 9999999999);
+        if ($this->checkNumberExists($random_num)) {return generateBarcodeNumber();}
+        return $random_num;
+    }
+    function checkNumberExists($random_num) {
+        return Order::where('order_no', $random_num)->exists();
+    }
+
     public function postPrepaid(Request $request)
     {
         $this->validate($request, [
@@ -103,25 +116,19 @@ class PagesController extends Controller
             'mobile_number' => 'required|min:7|max:12'
         ]);
         
-        // Random data
-        function randomNumber() {
-            $random_num = mt_rand(1000000000, 9999999999);
-            if (checkNumberExists($random_num)) {return generateBarcodeNumber();}
-            return $random_num;
-        }
-        function checkNumberExists($random_num) {
-            return Order::where('order_no', $random_num)->exists();
-        }
+        
 
         $value = $request -> value;
         $order = Order::create([
             'user_id' => \Auth::user()->id,
-            'order_no' => randomNumber(),
+            'order_no' => $this->randomNumber(),
             'mobile_number' => $request -> mobile_number,
             'value' => $request -> value,
             'total' => $value + ($value*(5/100)),
             'status' => 0
         ]);
+
+        
 
         // dd($order);
         return redirect()->route('success', ['order' => $order -> order_no]);
@@ -135,20 +142,10 @@ class PagesController extends Controller
             'price' => 'required',
         ]);
 
-        // Random data
-        function randomNumber() {
-            $random_num = mt_rand(1000000000, 9999999999);
-            if (checkNumberExists($random_num)) {return generateBarcodeNumber();}
-            return $random_num;
-        }
-        function checkNumberExists($random_num) {
-            return Order::where('order_no', $random_num)->exists();
-        }
-
         $value = $request -> price;
         $order = Order::create([
             'user_id' => \Auth::user()->id,
-            'order_no' => randomNumber(),
+            'order_no' => $this->randomNumber(),
             'product' => $request -> product,
             'address' => $request -> address,
             'value' => $value,
