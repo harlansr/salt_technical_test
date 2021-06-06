@@ -133,8 +133,7 @@ class PagesController extends Controller
         ]);
 
         
-        // OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
-
+        OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
         return redirect()->route('success', ['order' => $order -> order_no]);
     }
 
@@ -157,7 +156,7 @@ class PagesController extends Controller
             'status' => 0
         ]);
 
-        // OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
+        OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
         return redirect()->route('success', ['order' => $order -> order_no]);
 
     }

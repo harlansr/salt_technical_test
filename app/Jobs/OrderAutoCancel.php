@@ -23,15 +23,7 @@ class OrderAutoCancel implements ShouldQueue
     public function __construct($order_no)
     {
         $this->order_no = $order_no;
-        // $this->cancelOrder($order_no);
     }
-
-    // private function cancelOrder($order_no){
-    //     // sleep(60);
-    //     Order::where('order_no', '=', $order_no)
-    //         ->where('status', '=', 0)
-    //         ->update(['status' => 3]);
-    // }
 
     /**
      * Execute the job.
@@ -40,8 +32,7 @@ class OrderAutoCancel implements ShouldQueue
      */
     public function handle()
     {
-        // sleep(10);
-        Order::where('order_no', '=', $this->$order_no)
+        Order::where('order_no', '=', $this->order_no)
             ->where('status', '=', 0)
             ->update(['status' => 3]);
 
