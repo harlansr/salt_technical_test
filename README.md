@@ -6,6 +6,6 @@ This is Project Technical Test Back End Web Developer  dari SALT - Digital Trans
 - Instal Composer
 - Instal Laravel
 - Clone this project
-- Create and connect your database on file ".env"
-- open Terminal and run "php artisan migrate" to automatic create require table on your database
-- on terminal run "php artisan serve" to run this website
+- Create new database and connect your database on file ".env"
+- Open Terminal and run "php artisan migrate" to automatic create require table on your database
+- On terminal run "php artisan serve" to run this website

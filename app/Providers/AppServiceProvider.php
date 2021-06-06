@@ -32,23 +32,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::useBootstrap();
-
-        // Using class based composers...
         View::composer(['prepaid-balance',
              'product',
              'success',
              'payment',
              'order',
             ], OrderComposer::class);
-
-        // Using closure based composers...
-        // View::composer('dashboard', function ($view) {
-        //     //
-        // });
-
-        // dd(\Auth::user());
-        // View::share('unpaid', Order::where('status', '=', 0)
-        // ->where('user_id', '=', \Auth::user()->id)
-        // ->count());
     }
 }

@@ -109,14 +109,18 @@ class PagesController extends Controller
         return Order::where('order_no', $random_num)->exists();
     }
 
+    function autoCancele($order_no){
+        $update_data = Order::where('order_no', '=', $order_no)
+                    ->where('status', '=', 0)
+                    ->update(['status' => 3]);
+    }
+
     public function postPrepaid(Request $request)
     {
         $this->validate($request, [
             'value' => 'required',
             'mobile_number' => 'required|min:7|max:12'
         ]);
-        
-        
 
         $value = $request -> value;
         $order = Order::create([
@@ -129,8 +133,8 @@ class PagesController extends Controller
         ]);
 
         
+        // OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
 
-        // dd($order);
         return redirect()->route('success', ['order' => $order -> order_no]);
     }
 
@@ -153,6 +157,7 @@ class PagesController extends Controller
             'status' => 0
         ]);
 
+        // OrderAutoCancel::dispatch($order -> order_no)->delay(now()->addMinutes(5));
         return redirect()->route('success', ['order' => $order -> order_no]);
 
     }
