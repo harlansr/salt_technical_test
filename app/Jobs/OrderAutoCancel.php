@@ -14,22 +14,12 @@ class OrderAutoCancel implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
     private $order_no;
     public function __construct($order_no)
     {
         $this->order_no = $order_no;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
         Order::where('order_no', '=', $this->order_no)

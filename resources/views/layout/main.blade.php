@@ -52,23 +52,16 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          {{-- <div class="container"> --}}
             @if (Auth::user()->name !='')
               <h1  class="navbar-brand mb-0 h1"><b>Hello, {{Auth::user()->name ?? ''}}</b><br><a class="text-danger" href="{{url('/order')}}">{{$unpaid}}</a> unpaid order</h1>
             @else
               <h1  class="navbar-brand"><b>Hello, {{Auth::user()->email ?? ''}}</b><br><a class="text-danger" href="/order">{{$unpaid}}</a> unpaid order</h1>
             @endif
   
-            {{-- <h1><a href="/"><b>3</b><a> unpaid order</h1> --}}
-            
-          {{-- </div> --}}
-  
-            {{-- <div class="a" href="/prepaid-balance">Prepaid Balance</div> | <div class="/product">Product Page</div> --}}
             <form class="d-flex">
               <button class="btn btn-outline-success me-2" type="button" onclick="document.location='prepaid-balance'">Prepaid Balance</button>
               <button class="btn btn-sm btn-outline-success me-2" type="button" onclick="document.location='product'">Product Page</button>
               <button class="btn btn-sm btn-outline-secondary me-2" type="button" onclick="document.location='logout'">Logout</button>
-              {{-- <a href="{{ route('logout') }}">Log Out</a> --}}
             </form>
   
             
@@ -79,13 +72,6 @@
 
     <!-- Begin page content -->
     @yield('container')
-
-    {{-- <footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-    </div>
-    </footer> --}}
-
 
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 

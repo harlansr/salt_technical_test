@@ -26,7 +26,6 @@
                 <label for="floatingSelect">Value</label>
             </div>
 
-
             <button class="w-100 btn btn-lg btn-primary mt-1" type="submit">Submit</button>
         </form>
         </main>

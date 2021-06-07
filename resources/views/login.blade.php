@@ -30,14 +30,8 @@
           @endif
         </div>
 
-        {{-- <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div> --}}
         <button class="w-100 btn btn-lg btn-primary mt-1" type="submit">Login</button>
       <br><br><a href="{{url('/register')}}">Register</a>
-        {{-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> --}}
       </form>
     </main>
   </div>

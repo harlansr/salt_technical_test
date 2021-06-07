@@ -11,12 +11,9 @@
                 <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" value="{{$query}}">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
-            
-            
-            
+
             <ul class="list-group">
 
-                
                 @foreach ($orders as $order)
                 <li class="list-group-item d-flex justify-content-between align-item-center">
                     <div class="ms-2 me-auto">
@@ -30,16 +27,12 @@
                             <p>{{$order->product}} that cost Rp {{number_format($order->value ,0,',','.')}}</p>
                         @endif
                     </div>
-                    
-                    
-
                         
                     <div class="ms-2 d-flex flex-row-reverse" >
                         @if ($order->status==0)
                             <button type="button" onclick="document.location='/payment?order_no={{$order->order_no}}'" class="btn btn-primary" style="height: 50px; width: 100px;">
                                 Pay Now
                             </button>
-                            {{-- <a href="/payment?order_no={{$order->order_no}}">Pay Now</a> --}}
                         @elseif ($order->status==1)
                             @if ($order->product != null)
                                 <p style="color:black; text-align: center;">shipping code<br>{{$order->shipping_code}}</p>

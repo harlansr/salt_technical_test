@@ -16,15 +16,6 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('/about', function () {
-//     return view('about');
-// });
-
-// Route::get('/', 'App\Http\Controllers\PagesController@home');
 
 Route::get('/', [PagesController::class, 'home']);
 
@@ -46,7 +37,6 @@ Route::get('/payment', [PagesController::class, 'payment'])->name('payment')->mi
 Route::post('/payment', [PagesController::class, 'payment'])->middleware('auth');
 
 Route::get('/order', [OrderController::class, 'index'])->name('order')->middleware('auth');
-//Route::get('/order/search', [OrderController::class, 'search'])->name('order')->middleware('auth');
 
 Route::post('/doPayment', [PagesController::class, 'doPayment'])->name('doPayment')->middleware('auth');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

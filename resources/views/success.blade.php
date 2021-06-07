@@ -24,8 +24,6 @@
                 </table>
             </div>
 
-            
-
             <div class="container">
                 <div class="form-floating mt-1">
                     @if ($mobile_number == '')
