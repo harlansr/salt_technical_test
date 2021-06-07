@@ -8,7 +8,7 @@
             {{ csrf_field() }}
             <h2 style="text-align: left; font-weight: bold;">Order History</h2>
             <form class="form-inline my-2 my-lg-0" type="post" action="{{route('order')}}">
-                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" value="{{$query}}">
+                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" maxlength=10 value="{{$query}}">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
 
